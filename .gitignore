@@ -14,3 +14,5 @@ wheels/
 .vscode/
 .DS_Store
 logs
+data
+faiss_index
