@@ -1,0 +1,48 @@
+{
+    "family": "rag_multidoc_chat",
+    "networkMode": "awsvpc",
+    "executionRoleArn": "arn:aws:iam::663345616921:role/ecsTaskExecutionRole",
+    "requiresCompatibilities": ["FARGATE"],
+    "cpu": "256",
+    "memory": "512",
+    "containerDefinitions": [
+      {
+        "name": "rag_multidoc_chat-container",
+        "image": "663345616921.dkr.ecr.us-east-1.amazonaws.com/rag_multidoc_chat_repo",
+        "cpu": 256,
+        "essential": true,
+        "portMappings": [
+          {
+            "containerPort": 8080,
+            "hostPort": 8080,
+            "protocol": "tcp",
+            "name": "rag_multidoc_chat-container-8080-tcp",
+            "appProtocol": "http"
+          }
+        ],
+        "environment": [
+          {
+            "name": "ENV",
+            "value": "production"
+          }
+        ],
+        "secrets": [
+          {
+            "name": "Development_API_KEYS",
+            "valueFrom": "arn:aws:secretsmanager:us-east-1:663345616921:secret:Development_API_KEYS-rsH7GG"
+          }
+  
+        ],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "/ecs/rag_multidoc_chat",
+            "awslogs-region": "us-east-1",
+            "awslogs-stream-prefix": "ecs",
+            "awslogs-create-group": "true"
+          }
+        }
+      }
+    ]
+  }
+  
