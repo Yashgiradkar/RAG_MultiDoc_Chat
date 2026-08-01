@@ -38,8 +38,7 @@
           "options": {
             "awslogs-group": "/ecs/rag_multidoc_chat",
             "awslogs-region": "us-east-1",
-            "awslogs-stream-prefix": "ecs",
-            "awslogs-create-group": "true"
+            "awslogs-stream-prefix": "ecs"
           }
         }
       }
